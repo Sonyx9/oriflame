@@ -1,5 +1,6 @@
-# Pages: Settings → Pages → Source = „GitHub Actions“.
-# Vlastní doména: v Settings zadejte oriflame.freedomfashion.cz; DNS CNAME oriflame → Sonyx9.github.io
+# Stejný princip jako GitHub starter „Deploy Astro site to Pages“:
+# configure-pages nastaví správné --site a --base (project /oriflame vs vlastní doména v kořeni).
+# Pages: Settings → Pages → Source = GitHub Actions; vlastní doména + DNS CNAME → USER.github.io
 name: Deploy Oriflame to GitHub Pages
 
 on:
@@ -14,7 +15,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -29,21 +30,34 @@ jobs:
           node-version: 22
           cache: npm
 
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Build with Astro (site + base z GitHub Pages)
+        run: |
+          set -e
+          SITE="${{ steps.pages.outputs.origin }}"
+          BASE="${{ steps.pages.outputs.base_path }}"
+          if [ -z "$BASE" ]; then BASE="/"; fi
+          # Astro očekává base s koncovým / (jinak se rozbije slepování cest, např. /oriflamefavicon.svg)
+          if [ "$BASE" != "/" ]; then
+            case "$BASE" in */) ;; *) BASE="${BASE}/" ;; esac
+          fi
+          echo "astro build --site=$SITE --base=$BASE"
+          npx astro build --site "$SITE" --base "$BASE"
 
       - name: Verify output
         run: |
           test -f dist/index.html
           ls -la dist
 
-      - name: 404 fallback (stejná stránka jako úvod)
+      - name: 404 fallback
         run: cp dist/index.html dist/404.html
 
-      # Držet @v3: od v4 tarball vylučuje skryté soubory (.nojekyll); v3 je zabalí celé dist včetně teček.
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
