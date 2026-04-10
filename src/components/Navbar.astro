@@ -1,30 +1,91 @@
 ---
 import Logo from './Logo.astro';
+
+const navItems = [
+  { href: '#o-mne', label: 'O mně' },
+  { href: '#nabidka', label: 'Pojďte do toho se mnou', long: true },
+  { href: '#jak-to-funguje', label: 'Jak to funguje' },
+  { href: '#reference', label: 'Reference' },
+] as const;
 ---
-<header class="fixed top-0 left-0 right-0 z-50 pt-4">
+<header class="fixed top-0 left-0 right-0 z-50 pt-3 sm:pt-4">
   <nav
-    class="container-page container-page--wide flex flex-wrap items-center justify-between gap-3 rounded-full border border-[#E8B4B7]/45 bg-[#fffcfa]/95 py-3 shadow-[0_8px_32px_rgba(44,40,37,0.06)] backdrop-blur-md md:gap-4 md:py-3.5"
+    class="container-page container-page--wide flex items-center justify-between gap-2 rounded-full border border-[#E8B4B7]/45 bg-[#fffcfa]/95 py-2.5 pl-3 pr-2 shadow-[0_8px_32px_rgba(44,40,37,0.06)] backdrop-blur-md sm:gap-3 sm:py-3 md:gap-4 md:py-3.5 md:pl-4 md:pr-3"
     aria-label="Hlavní navigace"
   >
     <Logo variant="nav" />
 
-    <div class="order-3 hidden w-full items-center justify-center gap-1 md:order-none md:flex md:w-auto md:flex-1 md:justify-center">
-      <a href="#o-mne" class="nav-link">O mně</a>
-      <a href="#nabidka" class="nav-link nav-link--long">Pojďte do toho se mnou</a>
-      <a href="#jak-to-funguje" class="nav-link">Jak to funguje</a>
-      <a href="#reference" class="nav-link">Reference</a>
+    <div class="hidden flex-1 items-center justify-center gap-0.5 md:flex lg:gap-1">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={['nav-link', item.long && 'nav-link--long']}
+        >
+          {item.label}
+        </a>
+      ))}
     </div>
 
-    <div class="flex flex-wrap items-center justify-end">
+    <div class="flex shrink-0 items-center gap-1.5 sm:gap-2">
       <a
         href="#kontakt"
         data-open-consultation
-        class="inline-flex min-h-[40px] items-center justify-center rounded-full bg-[#D4AF37] px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-[#c9a227] sm:px-5"
+        class="inline-flex min-h-[40px] items-center justify-center rounded-full bg-[#D4AF37] px-3 py-2 text-[11px] font-semibold text-white transition hover:bg-[#c9a227] sm:px-4 sm:text-[12px] md:px-5"
+      >
+        Kontakt
+      </a>
+
+      <button
+        type="button"
+        id="nav-menu-toggle"
+        class="flex h-10 w-10 items-center justify-center rounded-full border border-[#E8B4B7]/50 text-[#2c2825] transition hover:bg-[#E8B4B7]/20 md:hidden"
+        aria-expanded="false"
+        aria-controls="nav-mobile-panel"
+        aria-label="Otevřít menu"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path class="nav-icon-open" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+          <path class="nav-icon-close" stroke-linecap="round" d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div
+    id="nav-mobile-backdrop"
+    class="nav-mobile-backdrop fixed inset-0 z-[55] bg-[#2c2825]/40 opacity-0 backdrop-blur-[2px] transition-opacity duration-200 md:hidden pointer-events-none"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    id="nav-mobile-panel"
+    class="nav-mobile-panel fixed inset-x-0 top-0 z-[60] max-h-[min(100dvh,100%)] overflow-y-auto rounded-b-2xl border-b border-[#E8B4B7]/40 bg-[#fffcfa]/98 px-4 pb-6 pt-16 shadow-xl transition-transform duration-200 ease-out md:hidden translate-y-[-100%]"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu"
+    hidden
+  >
+    <div class="mx-auto flex max-w-md flex-col gap-1">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'nav-mobile-link rounded-xl px-4 py-3.5 text-[15px] font-medium text-[#2c2825] transition hover:bg-[#E8B4B7]/25',
+            item.long && 'leading-snug',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href="#kontakt"
+        data-open-consultation
+        class="nav-mobile-link mt-2 inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#D4AF37] px-4 py-3 text-[15px] font-semibold text-white transition hover:bg-[#c9a227]"
       >
         Kontakt
       </a>
     </div>
-  </nav>
+  </div>
 </header>
 
 <style>
@@ -46,4 +107,98 @@ import Logo from './Logo.astro';
     background: color-mix(in srgb, var(--color-brand-gold) 18%, transparent);
     color: var(--color-text);
   }
+
+  #nav-menu-toggle .nav-icon-close {
+    display: none;
+  }
+  #nav-menu-toggle.is-open .nav-icon-open {
+    display: none;
+  }
+  #nav-menu-toggle.is-open .nav-icon-close {
+    display: block;
+  }
+  .nav-mobile-backdrop.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .nav-mobile-panel.is-open {
+    transform: translateY(0);
+  }
 </style>
+
+<script lang="ts">
+  function initMobileNav() {
+    const toggle = document.getElementById('nav-menu-toggle');
+    const panel = document.getElementById('nav-mobile-panel');
+    const backdrop = document.getElementById('nav-mobile-backdrop');
+    if (!toggle || !panel || !backdrop || toggle.dataset.bound === '1') return;
+    toggle.dataset.bound = '1';
+
+    const focusableSelector = 'a[href], button:not([disabled])';
+    let lastFocus: HTMLElement | null = null;
+
+    const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
+
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Zavřít menu' : 'Otevřít menu');
+      if (open) {
+        panel.hidden = false;
+        panel.classList.add('is-open');
+        backdrop.classList.add('is-visible');
+        toggle.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      } else {
+        panel.classList.remove('is-open');
+        backdrop.classList.remove('is-visible');
+        toggle.classList.remove('is-open');
+        document.body.style.overflow = '';
+        window.setTimeout(() => {
+          if (!isOpen()) panel.hidden = true;
+        }, 200);
+      }
+    };
+
+    const close = () => {
+      if (isOpen()) setOpen(false);
+    };
+
+    toggle.addEventListener('click', () => {
+      setOpen(!isOpen());
+      if (isOpen()) {
+        lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        const first = panel.querySelector<HTMLElement>(focusableSelector);
+        first?.focus();
+      } else {
+        lastFocus?.focus();
+      }
+    });
+
+    backdrop.addEventListener('click', close);
+
+    panel.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', () => {
+        if (!(a as HTMLElement).hasAttribute('data-open-consultation')) close();
+      });
+    });
+
+    panel.querySelectorAll('[data-open-consultation]').forEach((el) => {
+      el.addEventListener('click', () => {
+        close();
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isOpen()) {
+        close();
+        toggle.focus();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileNav);
+  } else {
+    initMobileNav();
+  }
+</script>

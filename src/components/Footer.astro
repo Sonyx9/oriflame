@@ -7,43 +7,58 @@ const ext = { target: '_blank' as const, rel: 'noopener noreferrer' as const };
 ---
 
 <footer class="mt-auto bg-gradient-to-b from-[#1a1a1a] to-[#12151c] text-white" role="contentinfo">
-  <div class="container-page py-7 md:py-9">
-    <div class="grid gap-8 sm:gap-7 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10">
-      <div class="flex items-start lg:max-w-sm">
+  <div class="container-page py-8 sm:py-9 md:py-10">
+    <div
+      class="grid grid-cols-1 gap-8 border-b border-white/10 pb-8 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-10 sm:pb-10 lg:grid-cols-3 lg:gap-x-10 lg:gap-y-8 lg:border-0 lg:pb-0"
+    >
+      <div
+        class="flex flex-col items-center justify-center border-b border-white/10 pb-8 sm:col-span-2 sm:border-b-0 sm:pb-0 lg:col-span-1 lg:items-start lg:justify-start"
+      >
         <Logo variant="footer" inverted compact />
       </div>
 
-      <nav class="md:pl-2 lg:pl-0" aria-label="Rychlé odkazy">
+      <nav class="text-center sm:text-left" aria-label="Rychlé odkazy">
         <h2 class="text-base font-semibold tracking-tight text-white sm:text-lg" style="font-family: var(--font-serif);">
           Rychlé odkazy
         </h2>
-        <ul class="mt-2.5 space-y-1.5 text-[14px] text-white/80 sm:mt-3 sm:space-y-2 sm:text-[15px]">
+        <ul class="mt-3 space-y-2.5 text-[15px] leading-snug text-white/80 sm:mt-4 sm:space-y-2">
           <li>
-            <a href={ORIFLAME_LINKS.katalog} {...ext} class="transition hover:text-white">Katalog</a>
+            <a
+              href={ORIFLAME_LINKS.katalog}
+              {...ext}
+              class="inline-block min-h-[44px] py-2 transition hover:text-white sm:min-h-0 sm:py-0">Katalog</a>
           </li>
           <li>
-            <a href={ORIFLAME_LINKS.eshop} {...ext} class="transition hover:text-white">E-shop</a>
+            <a
+              href={ORIFLAME_LINKS.eshop}
+              {...ext}
+              class="inline-block min-h-[44px] py-2 transition hover:text-white sm:min-h-0 sm:py-0">E-shop</a>
           </li>
           <li>
-            <a href={ORIFLAME_LINKS.registrace} {...ext} class="transition hover:text-white">Příležitost</a>
+            <a
+              href={ORIFLAME_LINKS.registrace}
+              {...ext}
+              class="inline-block min-h-[44px] py-2 transition hover:text-white sm:min-h-0 sm:py-0">Příležitost</a>
           </li>
         </ul>
       </nav>
 
-      <div class="md:col-span-2 lg:col-span-1">
+      <div class="text-center sm:text-left lg:border-0 lg:pt-0">
         <h2 class="text-base font-semibold tracking-tight text-white sm:text-lg" style="font-family: var(--font-serif);">
           Provozovatel stránek
         </h2>
-        <ul class="mt-2.5 space-y-1 text-[14px] text-white/80 sm:mt-3 sm:space-y-1.5 sm:text-[15px]">
+        <ul class="mt-3 space-y-2 text-[15px] leading-relaxed text-white/80 sm:mt-4">
           <li class="font-medium text-white/95">Lukáš Liška</li>
           <li>IČO: 23468408</li>
-          <li class="leading-snug">Sídlo: Nádražní 619, 348 15, Planá</li>
+          <li class="mx-auto max-w-[28ch] sm:mx-0 sm:max-w-none">Sídlo: Nádražní 619, 348 15, Planá</li>
         </ul>
       </div>
     </div>
 
-    <div class="mt-7 border-t border-white/10 pt-5 text-center md:mt-8 md:pt-6">
-      <p class="text-[12px] leading-relaxed text-[#9ca3af] sm:text-[13px]">
+    <div class="mt-8 border-t border-white/10 pt-8 text-center sm:mt-10 sm:pt-8">
+      <p
+        class="mx-auto max-w-[36rem] text-pretty text-[12px] leading-relaxed text-[#9ca3af] sm:text-[13px] md:max-w-[42rem]"
+      >
         Vytvořil{' '}
         <a
           href="https://lukaskoula.com"
@@ -55,8 +70,13 @@ const ext = { target: '_blank' as const, rel: 'noopener noreferrer' as const };
         </a>
         {' '}© 2026 Freedom Fashion Česká republika. Všechna práva vyhrazena.
       </p>
-      <p class="mt-2">
-        <a href={`${base}`} class="text-[11px] text-white/40 transition hover:text-white/65">Začátek stránky</a>
+      <p class="mt-3 sm:mt-2">
+        <a
+          href={`${base}`}
+          class="inline-flex min-h-[44px] items-center justify-center text-[12px] text-white/45 transition hover:text-white/70 sm:min-h-0"
+        >
+          Začátek stránky
+        </a>
       </p>
     </div>
   </div>
