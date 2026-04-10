@@ -1,4 +1,5 @@
-# Pages: Repository → Settings → Pages → Source musí být „GitHub Actions“ (ne „Deploy from branch“).
+# Pages: Settings → Pages → Source = „GitHub Actions“.
+# Vlastní doména: v Settings zadejte oriflame.freedomfashion.cz; DNS CNAME oriflame → Sonyx9.github.io
 name: Deploy Oriflame to GitHub Pages
 
 on:
@@ -13,7 +14,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -28,19 +29,25 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
       - name: Install dependencies
         run: npm ci
 
       - name: Build
         run: npm run build
 
-      - name: Upload artifact
+      - name: Verify output
+        run: |
+          test -f dist/index.html
+          ls -la dist
+
+      - name: 404 fallback (stejná stránka jako úvod)
+        run: cp dist/index.html dist/404.html
+
+      # Držet @v3: od v4 tarball vylučuje skryté soubory (.nojekyll); v3 je zabalí celé dist včetně teček.
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: dist
 
   deploy:
     needs: build
@@ -51,4 +58,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
