@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import BrandMission from '../components/BrandMission.astro';
+import Offer from '../components/Offer.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Benefits from '../components/Benefits.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+import ConsultationModal from '../components/ConsultationModal.astro';
+---
+
+<BaseLayout>
+  <ConsultationModal />
+  <Navbar />
+  <main>
+    <Hero />
+    <BrandMission />
+    <Offer />
+    <HowItWorks />
+    <Testimonials />
+    <Benefits />
+    <FinalCTA />
+  </main>
+  <Footer />
+</BaseLayout>

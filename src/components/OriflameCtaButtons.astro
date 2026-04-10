@@ -1,0 +1,185 @@
+---
+import { ORIFLAME_LINKS } from '../data/oriflameLinks';
+
+interface Props {
+  variant?: 'footer' | 'inline' | 'nav' | 'tiles';
+}
+
+const { variant = 'inline' } = Astro.props;
+
+const ext = { target: '_blank' as const, rel: 'noopener noreferrer' };
+
+/** Nahraďte vlastními fotkami (stejný poměr stran stačí) */
+const tileImages = {
+  registrace:
+    'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85',
+  eshop:
+    'https://media-cdn.oriflame.com/contentImage?externalMediaId=5f057e33-734e-4b34-8270-cb79db501e0d&name=Campaign_1370x1000&inputFormat=png&w=2732&q=85&imageFormat=WebP',
+  katalog:
+    'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=900&q=80',
+} as const;
+
+const baseFooter =
+  'inline-flex min-h-[44px] items-center justify-center rounded-full px-4 py-2 text-[12px] font-semibold transition sm:px-5';
+const baseInline =
+  'inline-flex min-h-[44px] items-center justify-center rounded-full px-5 py-2.5 text-[13px] font-semibold transition';
+
+const baseNav =
+  'inline-flex min-h-[40px] items-center justify-center rounded-full px-3 py-2 text-[11px] font-semibold tracking-wide transition sm:px-4 sm:text-[12px]';
+
+const tileOverlay = 'pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/25';
+const tileBtn =
+  'inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#D4AF37] px-6 py-2.5 text-[13px] font-semibold text-white shadow-[0_8px_30px_rgba(0,0,0,0.35)] ring-2 ring-white/50 transition duration-300 group-hover:scale-[1.03] group-hover:bg-[#c9a227] group-hover:shadow-[0_12px_40px_rgba(212,175,55,0.35)]';
+---
+
+{variant === 'tiles' && (
+  <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 sm:gap-6">
+      <a
+        href={ORIFLAME_LINKS.registrace}
+        {...ext}
+        aria-label="Registrace u Oriflame — otevře se na nové kartě"
+        class="group overflow-hidden rounded-2xl border border-[#E8B4B7]/40 bg-[#fffcfa] shadow-[0_4px_24px_rgba(44,40,37,0.06)] transition hover:border-[#D4AF37]/45 hover:shadow-[0_16px_48px_rgba(44,40,37,0.1)]"
+      >
+        <div class="relative aspect-[4/3] overflow-hidden bg-[#2a2623]">
+          <img
+            src={tileImages.registrace}
+            alt=""
+            class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+            loading="lazy"
+            width="1200"
+            height="900"
+          />
+          <div class={tileOverlay} aria-hidden="true"></div>
+          <div class="pointer-events-none absolute inset-0 flex items-center justify-center p-4" aria-hidden="true">
+            <span class={tileBtn}>Registrovat se</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between gap-3 px-4 py-3.5 sm:px-5">
+          <span class="text-[15px] font-semibold text-[#2c2825]">Registrace</span>
+          <span class="shrink-0 text-[12px] font-semibold uppercase tracking-wider text-[#D4AF37] transition group-hover:text-[#b8941f]">
+            Otevřít ↗
+          </span>
+        </div>
+      </a>
+      <a
+        href={ORIFLAME_LINKS.eshop}
+        {...ext}
+        aria-label="Nakupovat v e-shopu Oriflame — otevře se na nové kartě"
+        class="group overflow-hidden rounded-2xl border border-[#E8B4B7]/40 bg-[#fffcfa] shadow-[0_4px_24px_rgba(44,40,37,0.06)] transition hover:border-[#D4AF37]/45 hover:shadow-[0_16px_48px_rgba(44,40,37,0.1)]"
+      >
+        <div class="relative aspect-[4/3] overflow-hidden bg-[#2a2623]">
+          <img
+            src={tileImages.eshop}
+            alt=""
+            class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+            loading="lazy"
+            width="900"
+            height="675"
+          />
+          <div class={tileOverlay} aria-hidden="true"></div>
+          <div class="pointer-events-none absolute inset-0 flex items-center justify-center p-4" aria-hidden="true">
+            <span class={tileBtn}>Nakupovat</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between gap-3 px-4 py-3.5 sm:px-5">
+          <span class="text-[15px] font-semibold text-[#2c2825]">Nakupovat v e-shopu</span>
+          <span class="shrink-0 text-[12px] font-semibold uppercase tracking-wider text-[#D4AF37] transition group-hover:text-[#b8941f]">
+            Otevřít ↗
+          </span>
+        </div>
+      </a>
+      <a
+        href={ORIFLAME_LINKS.katalog}
+        {...ext}
+        aria-label="Otevřít katalog Oriflame — otevře se na nové kartě"
+        class="group overflow-hidden rounded-2xl border border-[#E8B4B7]/40 bg-[#fffcfa] shadow-[0_4px_24px_rgba(44,40,37,0.06)] transition hover:border-[#D4AF37]/45 hover:shadow-[0_16px_48px_rgba(44,40,37,0.1)]"
+      >
+        <div class="relative aspect-[4/3] overflow-hidden bg-[#2a2623]">
+          <img
+            src={tileImages.katalog}
+            alt=""
+            class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+            loading="lazy"
+            width="900"
+            height="675"
+          />
+          <div class={tileOverlay} aria-hidden="true"></div>
+          <div class="pointer-events-none absolute inset-0 flex items-center justify-center p-4" aria-hidden="true">
+            <span class={tileBtn}>Otevřít katalog</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-between gap-3 px-4 py-3.5 sm:px-5">
+          <span class="text-[15px] font-semibold text-[#2c2825]">Katalog</span>
+          <span class="shrink-0 text-[12px] font-semibold uppercase tracking-wider text-[#D4AF37] transition group-hover:text-[#b8941f]">
+            Otevřít ↗
+          </span>
+        </div>
+      </a>
+  </div>
+)}
+
+{variant === 'footer' && (
+  <div class="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:justify-end">
+    <a href={ORIFLAME_LINKS.registrace} {...ext} class={`${baseFooter} bg-[#D4AF37] text-white hover:bg-[#c9a227]`}>
+      Registrace
+    </a>
+    <a href={ORIFLAME_LINKS.eshop} {...ext} class={`${baseFooter} border border-white/25 bg-white/10 text-white hover:bg-white/20`}>
+      E-shop
+    </a>
+    <a href={ORIFLAME_LINKS.katalog} {...ext} class={`${baseFooter} border border-white/25 bg-white/10 text-white hover:bg-white/20`}>
+      Katalog
+    </a>
+  </div>
+)}
+
+{variant === 'nav' && (
+  <div class="flex flex-wrap items-center justify-end gap-1.5 sm:gap-2">
+    <a
+      href={ORIFLAME_LINKS.registrace}
+      {...ext}
+      class={`${baseNav} bg-[#D4AF37] text-white hover:bg-[#c9a227]`}
+    >
+      Registrace
+    </a>
+    <a
+      href={ORIFLAME_LINKS.eshop}
+      {...ext}
+      class={`${baseNav} border border-[#E8B4B7]/55 bg-white/90 text-[#2c2825] hover:bg-[#E8B4B7]/15`}
+    >
+      E-shop
+    </a>
+    <a
+      href={ORIFLAME_LINKS.katalog}
+      {...ext}
+      class={`${baseNav} border border-[#E8B4B7]/60 bg-[#E8B4B7]/25 text-[#2c2825] hover:bg-[#E8B4B7]/40`}
+    >
+      Katalog
+    </a>
+  </div>
+)}
+
+{variant === 'inline' && (
+  <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+    <a
+      href={ORIFLAME_LINKS.registrace}
+      {...ext}
+      class={`${baseInline} bg-[#D4AF37] text-white hover:bg-[#c9a227]`}
+    >
+      Registrace
+    </a>
+    <a
+      href={ORIFLAME_LINKS.eshop}
+      {...ext}
+      class={`${baseInline} border border-[#D4AF37]/50 bg-white text-[#2c2825] hover:border-[#D4AF37] hover:bg-[#E8B4B7]/15`}
+    >
+      E-shop
+    </a>
+    <a
+      href={ORIFLAME_LINKS.katalog}
+      {...ext}
+      class={`${baseInline} border border-[#E8B4B7] bg-[#E8B4B7]/30 text-[#2c2825] hover:bg-[#E8B4B7]/45`}
+    >
+      Katalog
+    </a>
+  </div>
+)}

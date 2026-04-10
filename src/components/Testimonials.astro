@@ -1,0 +1,47 @@
+---
+const quotes = [
+  {
+    text: 'Konečně někdo, kdo mi vysvětlil rutinu tak, aby mi „seděla“ — ne podle internetu, ale podle mě.',
+    name: 'Kateřina V.',
+    tag: 'Péče o pleť',
+  },
+  {
+    text: 'Ocenila jsem klid a žádné nadhánění. Cítila jsem, že jde o mě, ne o čísla.',
+    name: 'Martina K.',
+    tag: 'Konzultace',
+  },
+  {
+    text: 'Po čtyřicítce jsem chtěla přehled. Dostala jsem ho — s respektem k mému času.',
+    name: 'Lucie P.',
+    tag: 'Dlouhodobá spolupráce',
+  },
+];
+---
+<section id="reference" class="scroll-mt-28 bg-[#2c2426] py-16 text-white ring-1 ring-[#D4AF37]/15 md:py-24">
+  <div class="container-page">
+    <div class="mx-auto max-w-4xl text-center lg:max-w-5xl">
+      <p class="text-[12px] font-medium uppercase tracking-[0.2em] text-white/50">Reference</p>
+      <h2
+        class="mt-3 text-[2rem] font-semibold tracking-tight md:text-[2.35rem]"
+        style="font-family: var(--font-serif);"
+      >
+        Co říkají klientky
+      </h2>
+      <p class="mt-4 text-[15px] leading-relaxed text-white/65">
+        Autentická zpětná vazba je pro mě důležitější než jakýkoli slogan.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-3">
+      {quotes.map((q) => (
+        <figure class="flex flex-col rounded-[1.25rem] border border-[#D4AF37]/25 bg-white/[0.06] p-8 backdrop-blur-sm">
+          <blockquote class="flex-1 text-[15px] leading-relaxed text-white/90">„{q.text}“</blockquote>
+          <figcaption class="mt-6 border-t border-white/10 pt-5">
+            <p class="text-[14px] font-medium">{q.name}</p>
+            <p class="mt-1 text-[12px] text-[#E8B4B7]">{q.tag}</p>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>

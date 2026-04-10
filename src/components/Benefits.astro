@@ -1,0 +1,71 @@
+---
+---
+<section class="py-16 md:py-24">
+  <div class="container-page space-y-6 md:space-y-8">
+    <div class="grid gap-6 lg:grid-cols-2">
+      <div class="rounded-[1.5rem] border border-[#E8B4B7]/40 bg-[#fffcfa] p-10 lg:p-12">
+        <p class="text-[11px] font-medium uppercase tracking-[0.25em] text-[#D4AF37]">Pro vás</p>
+        <h3
+          class="mt-4 text-[1.75rem] font-semibold leading-tight tracking-tight text-[#2c2825] lg:text-[2rem]"
+          style="font-family: var(--font-serif);"
+        >
+          Přehled místo chaosu
+        </h3>
+        <ul class="mt-8 space-y-3">
+          {[
+            'Srozumitelné vysvětlení — bez zbytečného žargonu',
+            'Respekt k vašemu tempu a rozpočtu',
+            'Možnost dlouhodobé spolupráce, když budete chtít',
+            'Diskrétní, vstřícný přístup',
+          ].map((t) => (
+            <li class="flex gap-3 text-[14px] leading-relaxed text-[#6b6560]">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D4AF37]" aria-hidden="true" />
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rounded-[1.5rem] bg-[#2c2426] p-10 text-white ring-1 ring-[#D4AF37]/25 lg:p-12">
+        <p class="text-[11px] font-medium uppercase tracking-[0.25em] text-white/45">Oriflame</p>
+        <h3
+          class="mt-4 text-[1.75rem] font-semibold leading-tight tracking-tight lg:text-[2rem]"
+          style="font-family: var(--font-serif);"
+        >
+          Značka s tradicí a evropskými standardy
+        </h3>
+        <ul class="mt-8 space-y-3">
+          {[
+            'Švédská kosmetika s důrazem na kvalitu a udržitelnost',
+            'Široký záběr — od péče o pleť po vůně a wellness',
+            'Vhodné pro ženy, které chtějí jistotu a ověřený původ',
+          ].map((t) => (
+            <li class="flex gap-3 text-[14px] leading-relaxed text-white/80">
+              <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#E8B4B7]" aria-hidden="true" />
+              {t}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-8 text-[13px] leading-relaxed text-white/55">
+          Oficiální informace o značce najdete na webu Oriflame — tato stránka je osobní prezentace a vstupní brána ke mně.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      {[
+        { num: '57+', label: 'let tradice' },
+        { num: '60+', label: 'zemí' },
+        { num: '100 %', label: 'respekt k vám' },
+        { num: '1×', label: 'váš klidný rytmus' },
+      ].map((s) => (
+        <div class="rounded-[1.25rem] border border-[#E8B4B7]/35 bg-[#E8B4B7]/12 px-6 py-8 text-center">
+          <p class="text-[1.85rem] font-semibold text-[#2c2825]" style="font-family: var(--font-serif);">
+            {s.num}
+          </p>
+          <p class="mt-1 text-[10px] font-medium uppercase tracking-[0.2em] text-[#D4AF37]">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

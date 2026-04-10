@@ -1,0 +1,47 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Krátký nezávazný kontakt',
+    text: 'Napište nebo zavolejte. Domluvíme si čas, který vám vyhovuje — bez závazků a bez „prodejního tlaku“.',
+  },
+  {
+    num: '02',
+    title: 'Společně najdeme směr',
+    text: 'Projdeme vaše očekávání, časové možnosti a to, co chcete změnit nebo vylepšit. Vše v klidu a srozumitelně.',
+  },
+  {
+    num: '03',
+    title: 'Jste v obraze i potom',
+    text: 'Když budete chtít, můžeme se průběžně vracet k úpravám — péče se mění s ročním obdobím i životem.',
+  },
+];
+---
+<section id="jak-to-funguje" class="scroll-mt-28 py-16 md:py-24">
+  <div class="container-page">
+    <div class="mx-auto max-w-4xl text-center lg:max-w-5xl">
+      <p class="text-[12px] font-medium uppercase tracking-[0.2em] text-[#D4AF37]">Jak to funguje</p>
+      <h2
+        class="mt-3 text-[2rem] font-semibold tracking-tight text-[#2c2825] md:text-[2.35rem]"
+        style="font-family: var(--font-serif);"
+      >
+        Jednoduchý postup ve třech krocích
+      </h2>
+    </div>
+
+    <ol class="mt-14 grid gap-8 md:grid-cols-3 md:gap-10">
+      {steps.map((step) => (
+        <li class="relative rounded-[1.25rem] border border-[#E8B4B7]/40 bg-[#fffcfa] p-8 pt-10">
+          <span
+            class="absolute left-8 top-0 -translate-y-1/2 rounded-full bg-[#D4AF37] px-3 py-1 text-[11px] font-semibold tracking-wider text-white"
+            aria-hidden="true"
+          >
+            {step.num}
+          </span>
+          <h3 class="text-[1.1rem] font-medium text-[#2c2825]">{step.title}</h3>
+          <p class="mt-3 text-[14px] leading-relaxed text-[#6b6560]">{step.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

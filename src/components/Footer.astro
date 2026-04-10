@@ -1,0 +1,63 @@
+---
+import Logo from './Logo.astro';
+import { ORIFLAME_LINKS } from '../data/oriflameLinks';
+
+const base = import.meta.env.BASE_URL;
+const ext = { target: '_blank' as const, rel: 'noopener noreferrer' as const };
+---
+
+<footer class="mt-auto bg-gradient-to-b from-[#1a1a1a] to-[#12151c] text-white" role="contentinfo">
+  <div class="container-page py-7 md:py-9">
+    <div class="grid gap-8 sm:gap-7 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10">
+      <div class="flex items-start lg:max-w-sm">
+        <Logo variant="footer" inverted compact />
+      </div>
+
+      <nav class="md:pl-2 lg:pl-0" aria-label="Rychlé odkazy">
+        <h2 class="text-base font-semibold tracking-tight text-white sm:text-lg" style="font-family: var(--font-serif);">
+          Rychlé odkazy
+        </h2>
+        <ul class="mt-2.5 space-y-1.5 text-[14px] text-white/80 sm:mt-3 sm:space-y-2 sm:text-[15px]">
+          <li>
+            <a href={ORIFLAME_LINKS.katalog} {...ext} class="transition hover:text-white">Katalog</a>
+          </li>
+          <li>
+            <a href={ORIFLAME_LINKS.eshop} {...ext} class="transition hover:text-white">E-shop</a>
+          </li>
+          <li>
+            <a href={ORIFLAME_LINKS.registrace} {...ext} class="transition hover:text-white">Příležitost</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="md:col-span-2 lg:col-span-1">
+        <h2 class="text-base font-semibold tracking-tight text-white sm:text-lg" style="font-family: var(--font-serif);">
+          Provozovatel stránek
+        </h2>
+        <ul class="mt-2.5 space-y-1 text-[14px] text-white/80 sm:mt-3 sm:space-y-1.5 sm:text-[15px]">
+          <li class="font-medium text-white/95">Lukáš Liška</li>
+          <li>IČO: 23468408</li>
+          <li class="leading-snug">Sídlo: Nádražní 619, 348 15, Planá</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-7 border-t border-white/10 pt-5 text-center md:mt-8 md:pt-6">
+      <p class="text-[12px] leading-relaxed text-[#9ca3af] sm:text-[13px]">
+        Vytvořil{' '}
+        <a
+          href="https://lukaskoula.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="font-medium text-[#c4c4c4] underline decoration-white/20 underline-offset-2 transition hover:text-white hover:decoration-white/50"
+        >
+          Sonyx
+        </a>
+        {' '}© 2026 Freedom Fashion Česká republika. Všechna práva vyhrazena.
+      </p>
+      <p class="mt-2">
+        <a href={`${base}`} class="text-[11px] text-white/40 transition hover:text-white/65">Začátek stránky</a>
+      </p>
+    </div>
+  </div>
+</footer>

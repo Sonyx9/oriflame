@@ -1,0 +1,158 @@
+---
+/** Upravte podle sebe — jméno, foto, telefon, e-mail */
+const consultant = {
+  name: 'Vaše jméno',
+  title: 'Váš poradce s kosmetikou',
+  photo:
+    'https://cz.oriflame.com/system/media/PbsProfilePhoto/Get?documentId=647101001&customerId=3198809001&key=fddc835287961ef9caa5cf8337ba7e673c54ad5a241baa7464933243944fcb34&w=80&q=90&imageFormat=WebP',
+  phoneDisplay: '+420 777 298 071',
+  /** Jen čísla pro wa.me a tel: */
+  phoneDigits: '420777298071',
+  email: 'Objednavky-freedomfashion@seznam.cz',
+};
+
+const waHref = `https://wa.me/${consultant.phoneDigits}`;
+const telHref = `tel:+${consultant.phoneDigits}`;
+---
+
+<dialog
+  id="consultation-modal"
+  class="consult-dialog max-h-[min(92vh,640px)] w-[min(calc(100vw-1.5rem),28rem)] overflow-y-auto rounded-2xl border-0 bg-white p-0 text-[#333] shadow-[0_24px_80px_rgba(0,0,0,0.18)] backdrop:bg-black/40 open:flex open:flex-col"
+  aria-labelledby="consultation-modal-title"
+>
+  <div class="relative px-5 pb-5 pt-7 sm:px-7 sm:pb-6 sm:pt-8">
+    <button
+      type="button"
+      id="consultation-modal-close"
+      class="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-[#f3f3f3] text-[#888] transition hover:bg-[#e8e8e8] hover:text-[#333] sm:right-4 sm:top-4"
+      aria-label="Zavřít"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <div class="flex flex-col items-center text-center">
+      <div class="h-[80px] w-[80px] shrink-0 overflow-hidden rounded-full border-[3px] border-[#E8B4B7] bg-[#E8B4B7]/30 shadow-sm sm:h-[88px] sm:w-[88px]">
+        <img
+          src={consultant.photo}
+          alt=""
+          class="h-full w-full object-cover object-[center_20%]"
+          width="88"
+          height="88"
+          loading="lazy"
+        />
+      </div>
+      <h2 id="consultation-modal-title" class="mt-3 text-lg font-semibold tracking-tight text-[#333] sm:mt-4">
+        {consultant.name}
+      </h2>
+      <p class="mt-1 text-[13px] text-[#5c5c5c]">{consultant.title}</p>
+    </div>
+
+    <div class="mt-6 flex flex-col gap-2.5 sm:mt-7 sm:gap-3">
+      <a
+        href={telHref}
+        class="consult-row group flex items-center gap-3 rounded-xl bg-[#E8B4B7]/35 px-3.5 py-3 transition hover:bg-[#E8B4B7]/50 sm:gap-4 sm:px-4 sm:py-3.5"
+      >
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white shadow-sm sm:h-11 sm:w-11">
+          <svg class="h-5 w-5 text-[#d9468f] sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+          </svg>
+        </span>
+        <div class="min-w-0 flex-1 text-left">
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-[#5c5c5c]">Zavolat</p>
+          <p class="text-[15px] font-semibold text-[#333]">{consultant.phoneDisplay}</p>
+        </div>
+      </a>
+
+      <a
+        href={waHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="consult-row group flex items-center gap-3 rounded-xl bg-[#E8B4B7]/35 px-3.5 py-3 transition hover:bg-[#E8B4B7]/50 sm:gap-4 sm:px-4 sm:py-3.5"
+      >
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white shadow-sm sm:h-11 sm:w-11">
+          <svg class="h-5 w-5 text-[#b855a8] sm:h-6 sm:w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+            />
+          </svg>
+        </span>
+        <div class="min-w-0 flex-1 text-left">
+          <p class="text-[11px] font-semibold uppercase tracking-wide text-[#5c5c5c]">Napsat na WA</p>
+          <p class="text-[15px] font-semibold text-[#333]">{consultant.phoneDisplay}</p>
+        </div>
+      </a>
+
+      <a
+        href={`mailto:${consultant.email}`}
+        title={consultant.email}
+        class="consult-row group flex min-h-[52px] items-center gap-3 rounded-xl bg-[#E8B4B7]/35 px-3.5 py-2.5 transition hover:bg-[#E8B4B7]/50 sm:gap-4 sm:px-4 sm:py-3"
+      >
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white shadow-sm sm:h-11 sm:w-11">
+          <svg class="h-5 w-5 text-[#9b7fd4] sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+          </svg>
+        </span>
+        <p
+          class="min-w-0 flex-1 truncate text-left text-[13px] font-semibold leading-tight text-[#333] sm:text-[14px]"
+        >
+          {consultant.email}
+        </p>
+      </a>
+    </div>
+
+    <p class="mt-5 text-center text-[12px] font-medium text-[#737373] sm:mt-6">Jsme tu pro vás každý den!</p>
+  </div>
+</dialog>
+
+<script>
+  function initConsultationModal() {
+    const dialog = document.getElementById('consultation-modal');
+    const closeBtn = document.getElementById('consultation-modal-close');
+    if (!dialog || dialog.dataset.bound === '1') return;
+    if (!(dialog instanceof HTMLDialogElement)) return;
+    dialog.dataset.bound = '1';
+
+    const openers = document.querySelectorAll('[data-open-consultation]');
+
+    const open = () => {
+      if (!dialog.open) dialog.showModal();
+    };
+
+    const close = () => {
+      if (dialog.open) dialog.close();
+    };
+
+    openers.forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        open();
+      });
+    });
+
+    closeBtn?.addEventListener('click', close);
+
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) close();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initConsultationModal);
+  } else {
+    initConsultationModal();
+  }
+</script>
+
+<style>
+  .consult-dialog::backdrop {
+    background: rgba(44, 40, 37, 0.45);
+  }
+  .consult-dialog[open] {
+    margin: auto;
+  }
+  .consult-dialog {
+    color-scheme: light;
+  }
+</style>

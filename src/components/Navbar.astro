@@ -1,0 +1,49 @@
+---
+import Logo from './Logo.astro';
+---
+<header class="fixed top-0 left-0 right-0 z-50 pt-4">
+  <nav
+    class="container-page container-page--wide flex flex-wrap items-center justify-between gap-3 rounded-full border border-[#E8B4B7]/45 bg-[#fffcfa]/95 py-3 shadow-[0_8px_32px_rgba(44,40,37,0.06)] backdrop-blur-md md:gap-4 md:py-3.5"
+    aria-label="Hlavní navigace"
+  >
+    <Logo variant="nav" />
+
+    <div class="order-3 hidden w-full items-center justify-center gap-1 md:order-none md:flex md:w-auto md:flex-1 md:justify-center">
+      <a href="#o-mne" class="nav-link">O mně</a>
+      <a href="#nabidka" class="nav-link nav-link--long">Pojďte do toho se mnou</a>
+      <a href="#jak-to-funguje" class="nav-link">Jak to funguje</a>
+      <a href="#reference" class="nav-link">Reference</a>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-end">
+      <a
+        href="#kontakt"
+        data-open-consultation
+        class="inline-flex min-h-[40px] items-center justify-center rounded-full bg-[#D4AF37] px-4 py-2 text-[12px] font-semibold text-white transition hover:bg-[#c9a227] sm:px-5"
+      >
+        Kontakt
+      </a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .nav-link {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    padding: 8px 14px;
+    border-radius: 9999px;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .nav-link--long {
+    max-width: 10.5rem;
+    white-space: normal;
+    line-height: 1.25;
+    text-align: center;
+  }
+  .nav-link:hover {
+    background: color-mix(in srgb, var(--color-brand-gold) 18%, transparent);
+    color: var(--color-text);
+  }
+</style>

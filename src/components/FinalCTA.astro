@@ -1,0 +1,49 @@
+---
+import OriflameCtaButtons from './OriflameCtaButtons.astro';
+---
+<section class="pb-16 md:pb-24">
+  <div class="container-page space-y-10">
+    <div id="oriflame-odkazy" class="scroll-mt-28 rounded-[1.5rem] border border-[#E8B4B7]/50 bg-[#E8B4B7]/15 px-6 py-10 md:px-12 md:py-12">
+      <p class="text-center text-[12px] font-semibold uppercase tracking-[0.2em] text-[#D4AF37]">Oriflame</p>
+      <h2
+        class="mt-2 text-center text-[1.5rem] font-semibold tracking-tight text-[#2c2825] md:text-[1.75rem]"
+        style="font-family: var(--font-serif);"
+      >
+        Registrace, e-shop a katalog
+      </h2>
+      <p class="mx-auto mt-3 max-w-xl text-center text-[15px] leading-relaxed text-[#6b6560]">
+        Přímé odkazy na oficiální stránky — registrace konzultanta, nákup v e-shopu a aktuální katalog.
+      </p>
+      <div class="mt-8">
+        <OriflameCtaButtons variant="inline" />
+      </div>
+    </div>
+
+    <div id="kontakt" class="scroll-mt-28 relative w-full overflow-hidden rounded-[1.5rem] bg-[#E8B4B7]/35 px-8 py-14 md:px-16 lg:px-20 md:py-20 lg:py-24">
+      <div class="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/40 blur-2xl" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute -bottom-20 -left-10 h-40 w-40 rounded-full bg-[#D4AF37]/25 blur-2xl" aria-hidden="true"></div>
+
+      <div class="relative z-10 mx-auto max-w-2xl text-center lg:max-w-3xl xl:max-w-4xl">
+        <p class="text-[12px] font-medium uppercase tracking-[0.2em] text-[#6b6560]">Kontakt</p>
+        <h2
+          class="mt-3 text-[2rem] font-semibold tracking-tight text-[#2c2825] md:text-[2.5rem]"
+          style="font-family: var(--font-serif);"
+        >
+          Napište mi — odpovím co nejdřív
+        </h2>
+        <p class="mt-4 text-[15px] leading-relaxed text-[#6b6560]">
+          Zanechte mi zprávu s krátkým popisem, co byste rády řešily. Ozvu se zpět a domluvíme se na další krok.
+        </p>
+
+        <div class="mt-10 flex justify-center">
+          <a
+            href="mailto:Objednavky-freedomfashion@seznam.cz"
+            class="inline-flex items-center justify-center rounded-full bg-[#2c2825] px-8 py-3.5 text-[13px] font-medium text-white transition hover:bg-[#3d3834]"
+          >
+            Napsat e-mail
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

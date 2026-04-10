@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-optical-sizing: auto;
+  line-height: 1.6;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  /* Značkové barvy */
+  --color-brand-rose: #e8b4b7;
+  --color-brand-gold: #d4af37;
+  --color-brand-gold-hover: #c9a227;
+  --color-brand-gold-muted: #b8941f;
+
+  --color-bg: #fdf8f8;
+  --color-bg-elevated: #ffffff;
+  --color-text: #2c2825;
+  --color-text-muted: #5c554f;
+  --color-accent: var(--color-brand-gold);
+  --color-accent-soft: var(--color-brand-rose);
+  /* Tmavé panely (patička, reference) — teplá červeňohněď, ladí ke zlatu a růži */
+  --color-surface-dark: #2c2426;
+  --font-sans: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --container-max: min(100%, 104rem);
+  --container-pad: clamp(1rem, 4vw, 3.5rem);
+}
+
+.container-page {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+.container-page--wide {
+  max-width: min(100%, 112rem);
+}

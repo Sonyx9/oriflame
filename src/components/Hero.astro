@@ -1,0 +1,67 @@
+---
+import OriflameCtaButtons from './OriflameCtaButtons.astro';
+import { ORIFLAME_LINKS } from '../data/oriflameLinks';
+
+const ext = { target: '_blank' as const, rel: 'noopener noreferrer' };
+---
+<section class="relative pb-10 pt-28 md:pb-16 md:pt-32">
+  <div class="container-page container-page--wide">
+    <div
+      class="relative w-full overflow-hidden rounded-[1.75rem] bg-[#E8B4B7]/35 shadow-[0_24px_80px_rgba(44,40,37,0.12)] lg:rounded-[2rem]"
+      style="min-height: clamp(420px, 72vh, 680px);"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=2000&q=80"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover object-[center_35%]"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#2a2420]/75 via-[#2a2420]/35 to-transparent md:from-[#2a2420]/55 md:via-[#2a2420]/25"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#2a2420]/50 via-transparent to-transparent"></div>
+
+      <div class="relative z-10 flex h-full min-h-[inherit] flex-col justify-end p-8 md:p-12 lg:p-14 xl:p-16">
+        <div class="max-w-[min(100%,52rem)]">
+          <p class="mb-3 text-[11px] font-medium uppercase tracking-[0.35em] text-white/70">
+            Kosmetika &amp; péče s lidským přístupem
+          </p>
+          <h1
+            class="text-[2rem] font-semibold leading-[1.12] tracking-tight text-white md:text-[2.85rem] lg:text-[3.5rem] xl:text-[3.75rem]"
+            style="font-family: var(--font-serif);"
+          >
+            Čas pro vás — klidně, srozumitelně, bez spěchu
+          </h1>
+          <p class="mt-5 max-w-[42rem] text-[15px] leading-relaxed text-white/85 md:text-[17px] lg:text-[18px]">
+            Pomůžu vám zorientovat se v péči o pleť i v tom, co dává smysl právě vám. Žádný tlak, žádný chaos —
+            jen férová rada a podpora.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a
+              href={ORIFLAME_LINKS.eshop}
+              {...ext}
+              class="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#D4AF37] px-7 py-3 text-[13px] font-semibold text-white shadow-sm transition hover:bg-[#c9a227]"
+            >
+              Nakupovat
+            </a>
+            <a
+              href={ORIFLAME_LINKS.registrace}
+              {...ext}
+              class="inline-flex min-h-[44px] items-center justify-center rounded-full border-2 border-[#E8B4B7] bg-[#E8B4B7]/25 px-7 py-3 text-[13px] font-semibold text-white backdrop-blur-sm transition hover:border-white hover:bg-[#E8B4B7]/45"
+            >
+              Registrovat se
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-page mt-10 border-y border-[#E8B4B7]/50 py-4 text-center">
+    <p class="text-[12px] font-medium tracking-[0.14em] text-[#D4AF37] md:text-[13px]">
+      Konzultace · péče o pleť · make-up · wellness · osobní doporučení · podpora na míru
+    </p>
+  </div>
+
+  <div class="container-page mt-8 md:mt-10">
+    <OriflameCtaButtons variant="tiles" />
+  </div>
+</section>

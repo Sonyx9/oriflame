@@ -1,0 +1,41 @@
+---
+/** Soubor: public/oriflame-logo.png (kopie z ff oriflame.png) */
+interface Props {
+  variant?: 'nav' | 'footer';
+  /** Bílé logo na tmavém pozadí (brightness + invert) */
+  inverted?: boolean;
+  /** Nižší logo v patičce */
+  compact?: boolean;
+}
+
+const { variant = 'nav', inverted = false, compact = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const src = `${base}oriflame-logo.png`;
+---
+
+<a
+  href={`${base}`}
+  class:list={[
+    'inline-flex shrink-0 items-center justify-center bg-transparent',
+    variant === 'nav' && 'min-h-[80px]',
+    variant === 'footer' && !compact && 'min-h-[88px]',
+    variant === 'footer' && compact && 'min-h-0',
+  ]}
+>
+  <img
+    src={src}
+    alt="Oriflame"
+    class:list={[
+      'w-auto max-w-[min(100%,22rem)] object-contain object-left bg-transparent',
+      variant === 'nav' && 'h-16 md:h-18',
+      variant === 'footer' && !compact && 'h-20 max-h-[88px] opacity-95 md:h-[88px]',
+      variant === 'footer' &&
+        compact &&
+        'h-11 max-h-12 w-auto opacity-95 sm:h-12 sm:max-h-[52px] md:h-[52px] md:max-h-[52px]',
+      inverted && 'brightness-0 invert',
+    ]}
+    width="352"
+    height="96"
+    decoding="async"
+  />
+</a>
