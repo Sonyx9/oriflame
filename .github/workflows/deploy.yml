@@ -1,6 +1,6 @@
-# Stejný princip jako GitHub starter „Deploy Astro site to Pages“:
-# configure-pages nastaví správné --site a --base (project /oriflame vs vlastní doména v kořeni).
-# Pages: Settings → Pages → Source = GitHub Actions; vlastní doména + DNS CNAME → USER.github.io
+# Vlastní doména servíruje statiku z kořene (/) — base musí být '/', ne /oriflame/.
+# configure-pages často vrací base_path /oriflame i při custom domain → rozbité CSS na oriflame.freedomfashion.cz
+# Pages: Settings → Source = GitHub Actions; DNS CNAME oriflame → Sonyx9.github.io
 name: Deploy Oriflame to GitHub Pages
 
 on:
@@ -30,30 +30,16 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
-
       - name: Install dependencies
         run: npm ci
 
-      - name: Build with Astro (site + base z GitHub Pages)
-        run: |
-          set -e
-          SITE="${{ steps.pages.outputs.origin }}"
-          BASE="${{ steps.pages.outputs.base_path }}"
-          if [ -z "$BASE" ]; then BASE="/"; fi
-          # Astro očekává base s koncovým / (jinak se rozbije slepování cest, např. /oriflamefavicon.svg)
-          if [ "$BASE" != "/" ]; then
-            case "$BASE" in */) ;; *) BASE="${BASE}/" ;; esac
-          fi
-          echo "astro build --site=$SITE --base=$BASE"
-          npx astro build --site "$SITE" --base "$BASE"
+      - name: Build
+        run: npm run build
 
       - name: Verify output
         run: |
           test -f dist/index.html
-          ls -la dist
+          grep -E 'href="/assets/|href="/favicon' dist/index.html | head -1 || true
 
       - name: 404 fallback
         run: cp dist/index.html dist/404.html

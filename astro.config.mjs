@@ -3,9 +3,8 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 /**
- * Lokální `npm run build` / preview: níže.
- * Na GitHub Actions workflow předává `astro build --site` a `--base` z actions/configure-pages
- * (vlastní doména → base `/`, project Pages → `/oriflame/` včetně koncového lomítka).
+ * Kanonická adresa: oriflame.freedomfashion.cz (kořen `/`). Stejné hodnoty používá CI (`npm run build`).
+ * Adresa github.io/REPO by vyžadovala base `/REPO/` — s vlastní doménou to v jednom buildu nekombinujte.
  */
 export default defineConfig({
   site: 'https://oriflame.freedomfashion.cz',
