@@ -1,3 +1,4 @@
+# Pages: Repository → Settings → Pages → Source musí být „GitHub Actions“ (ne „Deploy from branch“).
 name: Deploy Oriflame to GitHub Pages
 
 on:
